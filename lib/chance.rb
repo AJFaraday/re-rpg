@@ -4,13 +4,50 @@ class Chance
     @generator = Random.new(seed)
   end
 
-  def percent(amount)
-    (@generator.rand(100) + 1) <= amount
+  def percent(target)
+    proportion(target, 100)
   end
 
   # x in y chance of being true
-  def proportion(x, y)
-    @generator.rand(y) <= x
+  def proportion(target, amount)
+    roll_die(amount) <= target
+  end
+
+  def roll_die(number)
+    (@generator.rand(number) + 1)
+  end
+
+  # roll a bag of dice
+  #
+  def roll_bag(dice=[])
+    raise "No dice in bag" if dice.empty?
+    DieBag.new(dice, self)
+  end
+
+  class DieBag
+
+    attr_reader :results
+
+    def initialize(dice, chance_generator)
+      @results = dice.collect { |die| chance_generator.roll_die(die) }
+    end
+
+    def [](index)
+      @results[index]
+    end
+
+    def each(&block)
+      @results.each(&block)
+    end
+
+    def length
+      @results.length
+    end
+
+    def sum
+      @results.inject(0, &:+)
+    end
+
   end
 
 end
