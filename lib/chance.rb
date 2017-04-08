@@ -1,8 +1,8 @@
 class Chance
 
   class PseudoRandom
-    def initialize
-      @i = 0
+    def initialize(seed = 0)
+      @i = seed
     end
     def rand(arg)
       @i += 1
