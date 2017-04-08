@@ -6,3 +6,5 @@ RSpec.configure do |config|
     c.syntax = :should
   end
 end
+
+TestChance = Chance.new(2)

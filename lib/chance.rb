@@ -1,14 +1,16 @@
 class Chance
 
-  include Singleton
+  def initialize(seed=Time.now.to_i)
+    @generator = Random.new(seed)
+  end
 
-  def self.percent(amount)
-    (rand(100) + 1) <= amount
+  def percent(amount)
+    (@generator.rand(100) + 1) <= amount
   end
 
   # x in y chance of being true
-  def self.proportion(x, y)
-    rand(y) <= x
+  def proportion(x, y)
+    @generator.rand(y) <= x
   end
 
 end

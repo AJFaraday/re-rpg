@@ -31,7 +31,7 @@ module MovingAttribute
 
     [:get, :maximum, :fill, :empty].each do |meth|
       define_method(meth) do |attribute_name|
-        get_attribute(attribute_name).send(meth)
+        get_attribute(attribute_name).public_send(meth)
       end
     end
 
