@@ -29,20 +29,10 @@ module MovingAttribute
       get_attribute(attr).change(amount)
     end
 
-    def get(attr)
-      get_attribute(attr).value
-    end
-
-    def maximum(attr)
-      get_attribute(attr).maximum
-    end
-
-    def fill(attr)
-      get_attribute(attr).fill
-    end
-
-    def empty(attr)
-      get_attribute(attr).empty
+    [:get, :maximum, :fill, :empty].each do |meth|
+      define_method(meth) do |attribute_name|
+        get_attribute(attribute_name).send(meth)
+      end
     end
 
     private

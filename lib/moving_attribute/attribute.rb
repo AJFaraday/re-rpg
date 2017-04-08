@@ -3,11 +3,14 @@ module MovingAttribute
   class Attribute
 
     attr_reader :maximum
-    attr_reader :value
 
     def initialize(initial, maximum)
       @value = initial
       @maximum = maximum
+    end
+
+    def get
+      @value
     end
 
     def change(amount)
