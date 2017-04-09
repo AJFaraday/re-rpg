@@ -1,6 +1,6 @@
-module ActionPreconditions
+module ActionModifiers
 
-  class Critical
+  class Multiply
 
     def initialize(percent:, multiplier:, message: "Amount multiplied")
       @percent, @multiplier, @message = percent, multiplier, message

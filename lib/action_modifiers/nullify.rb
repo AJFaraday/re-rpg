@@ -1,4 +1,4 @@
-module ActionPreconditions
+module ActionModifiers
 
   class Nullify
 

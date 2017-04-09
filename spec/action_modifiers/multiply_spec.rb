@@ -1,13 +1,13 @@
 require_relative '../spec_helper'
 
-module ActionPreconditions
-  describe Critical do
+module ActionModifiers
+  describe Multiply do
 
-    let(:precondition) {Critical.new(percent: 50,  multiplier: 2)}
+    let(:precondition) {Multiply.new(percent: 50, multiplier: 2)}
 
     it 'should initialize with one argument' do
       expect {
-        Critical.new(percent: 50, multiplier: 2)
+        Multiply.new(percent: 50, multiplier: 2)
       }.not_to raise_error
     end
 

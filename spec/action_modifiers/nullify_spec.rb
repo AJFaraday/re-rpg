@@ -1,6 +1,6 @@
 require_relative '../spec_helper'
 
-module ActionPreconditions
+module ActionModifiers
   describe Nullify do
 
     let(:precondition) {Nullify.new(percent: 50)}
