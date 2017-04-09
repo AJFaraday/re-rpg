@@ -7,4 +7,4 @@ RSpec.configure do |config|
   end
 end
 
-TestChance = Chance.new(2)
+TestChance = Chance.new(Random.new(2))

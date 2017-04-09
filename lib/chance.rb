@@ -1,18 +1,7 @@
 class Chance
 
-  class PseudoRandom
-    def initialize(seed = 0)
-      @i = seed
-    end
-    def rand(arg)
-      @i += 1
-      @i % arg
-    end
-  end
-
-  def initialize(seed=Time.now.to_i)
-    #@generator = Random.new(seed)
-    @generator = PseudoRandom.new
+  def initialize(generator=Random.new)
+    @generator = generator
   end
 
   def percent(target)
