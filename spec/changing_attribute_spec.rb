@@ -4,8 +4,8 @@ describe ChangingAttribute do
 
   class TestClass
     include ChangingAttribute
-    moving_attribute :health, 5, 5
-    moving_attribute :magic, 1, 2
+    changing_attribute :health, initial: 5, maximum: 5
+    changing_attribute :magic, initial: 1, maximum: 2
   end
 
   before(:each) do
@@ -61,23 +61,23 @@ describe ChangingAttribute do
   context 'errors' do
 
     it 'should throw an error when you get an unknown attribute' do
-      expect { @test_instance.get(:awesomeness) }.to raise_error(ChangingAttribute::UnknownAtributeError)
+      expect { @test_instance.get(:awesomeness) }.to raise_error(ChangingAttribute::UnknownAttributeError)
     end
 
     it 'should throw an error when you get maximum for an unknown attribute' do
-      expect { @test_instance.maximum(:awesomeness) }.to raise_error(ChangingAttribute::UnknownAtributeError)
+      expect { @test_instance.maximum(:awesomeness) }.to raise_error(ChangingAttribute::UnknownAttributeError)
     end
 
     it 'should throw an error when you change an unknown attribute' do
-      expect { @test_instance.change(:awesomeness, 100) }.to raise_error(ChangingAttribute::UnknownAtributeError)
+      expect { @test_instance.change(:awesomeness, 100) }.to raise_error(ChangingAttribute::UnknownAttributeError)
     end
 
     it 'should throw an error when you fill an unknown attribute' do
-      expect { @test_instance.fill(:awesomeness) }.to raise_error(ChangingAttribute::UnknownAtributeError)
+      expect { @test_instance.fill(:awesomeness) }.to raise_error(ChangingAttribute::UnknownAttributeError)
     end
 
     it 'should throw an error when you empty an unknown attribute' do
-      expect { @test_instance.empty(:awesomeness) }.to raise_error(ChangingAttribute::UnknownAtributeError)
+      expect { @test_instance.empty(:awesomeness) }.to raise_error(ChangingAttribute::UnknownAttributeError)
     end
 
   end
