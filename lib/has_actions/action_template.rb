@@ -25,18 +25,28 @@ module HasActions
       Action.new(self, source, target, options)
     end
 
+    def add_modifier(modifier_spec)
+      @modifiers << build_modifier(modifier_spec)
+    end
+
+    def copy
+      duplicate = self.dup
+      duplicate.instance_variable_set(:@modifiers, self.modifiers.map(&:dup))
+      duplicate
+    end
+
     private
 
 
     def build_modifiers(modifiers)
       modifiers.collect do |modifier_spec|
-        kls = ActionModifiers.const_get(modifier_spec.delete(:type))
-        kls.new(modifier_spec)
+        build_modifier(modifier_spec)
       end
     end
 
-    def self.available_modifiers
-      ActionModifiers.constants.select {|c| ActionModifiers.const_get(c).is_a? Class}
+    def build_modifier(modifier_spec)
+      kls = ActionModifiers.const_get(modifier_spec.delete(:type))
+      kls.new(modifier_spec)
     end
 
   end

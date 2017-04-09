@@ -54,6 +54,8 @@ characters = ['Alice', 'Bob', 'Charlie'].collect do |name|
   Character.new(name)
 end
 
+characters[1].modify_action(:attack, {type: 'Nullify', percent: 50, message: "but he can't be bothered"})
+
 until characters.count(&:alive?) <= 1
   character = characters[0]
   target = characters[1]

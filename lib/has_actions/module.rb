@@ -10,7 +10,7 @@ module HasActions
         original_method.bind(self).call(*args, &block)
         @action_templates = {}
         base.class_variable_get(:@@action_templates).each do |name, action_template|
-          @action_templates[name] = action_template.dup
+          @action_templates[name] = action_template.copy
         end
       end
     end
@@ -21,7 +21,6 @@ module HasActions
       send :include, InstanceMethods
     end
 
-    # TODO type, to affect health
     def action_template(name, attribute, direction, amount, message:, modifiers: [])
       class_variable_get(:@@action_templates)[name.to_sym] = HasActions::ActionTemplate.new(
         attribute,
@@ -47,6 +46,11 @@ module HasActions
     def action(action_name, target, options={})
       template = get_action_template(action_name)
       template.get_action(self, target, options).perform
+    end
+
+    # e.g. {type: 'Nullify', percent: 10, message: 'It missed'}
+    def modify_action(action_name, modifier_spec)
+      get_action_template(action_name).add_modifier(modifier_spec)
     end
 
     private
