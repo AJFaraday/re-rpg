@@ -1,4 +1,4 @@
-module MovingAttribute
+module ChangingAttribute
 
   class Attribute
 

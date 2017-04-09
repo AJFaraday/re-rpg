@@ -1,3 +1,3 @@
 class GameEntity
-  include MovingAttribute
+  include ChangingAttribute
 end

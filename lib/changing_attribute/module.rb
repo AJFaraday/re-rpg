@@ -1,4 +1,4 @@
-module MovingAttribute
+module ChangingAttribute
 
   def self.included(base)
     base.class_variable_set(:@@moving_attributes, {})
