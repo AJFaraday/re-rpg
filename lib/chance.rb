@@ -24,6 +24,10 @@ class Chance
     DieBag.new(dice, self)
   end
 
+  def roll_bag_for_target(target, dice=[])
+    roll_bag(dice).sum >= target
+  end
+
   class DieBag
 
     attr_reader :results

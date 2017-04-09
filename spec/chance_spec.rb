@@ -84,6 +84,11 @@ describe Chance do
       results.sum.should be_between(4, 34)
     end
 
+    it 'should tell us if the result is equal to or more than a target' do
+      results = 100.times.collect { TestChance.roll_bag_for_target(12, [12, 12]) }
+      results.count(&:itself).should be_within(10).of(50)
+    end
+
   end
 
 end
