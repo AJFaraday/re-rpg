@@ -17,3 +17,4 @@ end
 test_random_mechanism(Random)
 test_random_mechanism(IncrementRandom)
 test_random_mechanism(TimeRandom)
+test_random_mechanism(AlwaysSameRandom)
