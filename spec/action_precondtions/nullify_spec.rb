@@ -1,23 +1,23 @@
 require_relative '../spec_helper'
 
 module ActionPreconditions
-  describe Hit do
+  describe Nullify do
 
-    let(:precondition) {Hit.new(percent: 50)}
+    let(:precondition) {Nullify.new(percent: 50)}
 
     it 'should initialize with one argument' do
       expect {
-        Hit.new(percent: 50)
+        Nullify.new(percent: 50)
       }.not_to raise_error
     end
 
-    it 'should return zero if chance is missed' do
-      Chance.any_instance.stub(:percent) {false}
+    it 'should return zero if chance is true' do
+      Chance.any_instance.stub(:percent) {true}
       precondition.change(5).should eq(0)
     end
 
-    it 'should return unchanged value if chance is correct' do
-      Chance.any_instance.stub(:percent) {true}
+    it 'should return unchanged value if chance is false' do
+      Chance.any_instance.stub(:percent) {false}
       precondition.change(5).should eq(5)
     end
 

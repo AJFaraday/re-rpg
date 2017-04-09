@@ -8,3 +8,5 @@ RSpec.configure do |config|
 end
 
 TestChance = Chance.new(Random.new(7))
+FileUtils.rm('logs/test.log')
+GameLogger = Logger.new('logs/test.log')

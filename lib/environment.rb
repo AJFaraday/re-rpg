@@ -1,8 +1,3 @@
-#require_relative './chance'
-
-#require_relative './moving_attribute/attribute'
-#require_relative './moving_attribute/module'
-
 paths =[
   '../*/*.rb',
   '../*.rb'
@@ -14,3 +9,7 @@ paths.each do |path|
 end
 
 ChanceGenerator = Chance.new
+
+# TODO do this in a separate initializer
+require 'logger'
+GameLogger = Logger.new(STDOUT)
