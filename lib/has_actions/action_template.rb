@@ -8,9 +8,9 @@ module HasActions
       direction: [:increase, :decrease, :to, :from]
     }
 
-    def initialize(attribute, direction, amount, message: nil, modifiers: [])
+    def initialize(attribute, direction, amount, message: nil, modifiers: [], type: 'normal')
       @attribute, @direction, @amount = attribute, direction, amount
-      @message = message
+      @message, @type = message, type
       @modifiers = build_modifiers(modifiers)
     end
 

@@ -21,19 +21,17 @@ module HasActions
       send :include, InstanceMethods
     end
 
-    def action_template(name, attribute, direction, amount, message:, modifiers: [])
-      class_variable_get(:@@action_templates)[name.to_sym] = HasActions::ActionTemplate.new(
-        attribute,
-        direction,
-        amount,
-        message: message,
-        modifiers: modifiers
-      )
+    def action_template(name, *args)
+      class_variable_get(:@@action_templates)[name.to_sym] = HasActions::ActionTemplate.new(*args)
     end
 
   end
 
   module InstanceMethods
+
+    def add_action(name, *args)
+      @action_templates[name.to_sym] = HasActions::ActionTemplate.new(*args)
+    end
 
     def actions
       @action_templates.keys
@@ -62,7 +60,6 @@ module HasActions
     end
 
   end
-
 
   class UnknownActionError < StandardError
     def initialize(action_name)

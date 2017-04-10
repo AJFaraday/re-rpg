@@ -10,16 +10,14 @@ module HasActions
     end
 
     def perform
-      log_action
       x = run_modifiers(amount)
-      if x == 0
-        return fail_action
-      end
+      log_action
+      return fail_action if x == 0
       case direction
         when :increase
-          @source.change(attribute, x)
+          @target.change(attribute, x)
         when :decrease
-          @source.change(attribute, (x * -1))
+          @target.change(attribute, (x * -1))
         when :from
           @target.change(attribute, (x * -1))
           @source.change(attribute, x)
@@ -34,7 +32,9 @@ module HasActions
     def log_action
       if message
         GameLogger.info(
-          message.gsub('SELF', @source.to_s).gsub('TARGET', @target.to_s)
+          message
+            .gsub('SELF', @source.to_s)
+            .gsub('TARGET', @target.to_s)
         )
       end
     end

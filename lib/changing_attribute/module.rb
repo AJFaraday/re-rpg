@@ -26,6 +26,7 @@ module ChangingAttribute
   module InstanceMethods
 
     def change(attr, amount)
+      GameLogger.info("#{self} #{amount} #{attr}")
       get_attribute(attr).change(amount)
     end
 

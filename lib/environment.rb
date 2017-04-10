@@ -15,3 +15,7 @@ ChanceGenerator = Chance.new
 # TODO do this in a separate initializer
 require 'logger'
 GameLogger = Logger.new(STDOUT)
+GameLogger.formatter = proc do |severity, datetime, progname, msg|
+  time = datetime.strftime("%H:%M:%S %3N")
+  "#{time} #{msg}\n"
+end
